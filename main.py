@@ -152,17 +152,3 @@ def generate_answer_with_gemini(system_prompt, query, context):
         return response.json().get('candidates')[0].get('content').get('parts')[0].get('text')
     else:
         return f"Error: {response.status_code} - {response.text}"
-
-# # Example usage
-# api_key = "AIzaSyC2Sg8YRk_iOGWNg_sah-Teuylox9nanOY"
-# # failure_statement = "Sorry, I didn't understand your question. Do you want to connect with a live agent?"
-# System_Prompt = f"You are an AI chat bot to answer user questions on Student Resource Book of the NMIMS Global Access School For Continuing Education. I have provided you with the relevent chunks of information to answer the user's question under the tag {"CONTEXT"}. Following the CONTEXT I have provided you with the user's question inder the tag {"USER'S_QUESTION"}. Make sure the user's question is comprehendable and make's sense, if you are unsure of what the user is asking for, reply requesting for more information by the user. Answer the user's question using the only the context provided and do not use any other information. Do not Hallucinate. If the CONTEXT provided does not contain the information relevant to answer the user's question, reply with this STATEMENT: {"Sorry, I didn't understand your question. Do you want to connect with a live agent?"}."
-# System_Prompt_KEYWORD = f"You are an AI Agent to help retrieve information from Student Resource Book of the NMIMS Global Access School For Continuing Education to answer user questions on that database. Extract the relevant Keywords from the user query on which according to whic the information will be extracted from the database. Provide me with those Keywords."
-# user_query = input()
-# # relevant_chunk = find_relevant_chunk(user_query, index, chunks, model)
-# keywords = generate_answer_with_gemini_KEYWORD(System_Prompt_KEYWORD, user_query, api_key)
-# print(keywords)
-# relevant_chunk = find_relevant_chunk(keywords, index, chunks, model)
-
-# answer = generate_answer_with_gemini(System_Prompt, user_query, relevant_chunk, api_key)
-# print("Answer:", answer)

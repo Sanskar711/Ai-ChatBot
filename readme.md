@@ -1,5 +1,3 @@
-
-
 ## AI Chatbot Application
 
 ### Overview
@@ -17,40 +15,63 @@ This is an AI-powered chatbot built using Streamlit for the frontend and Python 
 ### Prerequisites
 
 Before running the application, ensure the following tools and dependencies are installed:
-	•	Python 3.8 or higher
-	•	Node.js (for running Streamlit’s optional frontend enhancements)
+	•	Python 3.8 or higher (if running locally)
+	•	Docker (for containerized deployment)
 	•	Google Cloud API Key with access to the Generative Language API.
 
 ### Setup Instructions
 
 1. Clone the Repository
 
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/Sanskar711/Ai-ChatBot.git
+cd Ai-ChatBot
 
-2. Install Backend Dependencies
 
-Install the required Python libraries:
-
-pip install -r requirements.txt
-
-3. Configure Environment Variables
+2. Configure Environment Variables
 
 Create a .env file in the root directory to store your Google API Key:
 
 GEMINI_API_KEY=your_google_api_key
 
-4. Place Your PDF File
+3. Place Your PDF File
 
 Add your input.pdf file to the project root or update the PDF_PATH in the code with the correct file path.
 
-5. Run the Streamlit App
+#### Running Locally
+
+Install Backend Dependencies
+
+Install the required Python libraries:
+
+pip install -r requirements.txt
+
+Run the Streamlit App
 
 Start the Streamlit application:
 
 streamlit run app.py
 
-### Usage
+#### Running as a Docker Container
+
+1. Build the Docker Image
+
+Run the following command to build the Docker image:
+
+docker build -t aichatbot .
+
+2. Run the Docker Container
+
+Start the container and map it to port 8501:
+
+docker run -p 8501:8501 --env-file .env aichatbot
+
+3. Access the Application
+
+Open your browser and navigate to:
+
+http://localhost:8501
+
+Usage
 
 	1.	Enter a Query:
 	•	Use the text box in the app to input a question about the content in the PDF.
@@ -58,19 +79,6 @@ streamlit run app.py
 	•	View responses and previous conversations in the chat window.
 	3.	Real-Time Processing:
 	•	The app processes the query, retrieves relevant information, and generates an answer.
-
-### File Structure
-
-├── app.py                     # Streamlit app code
-├── main.py                    # Backend processing logic
-├── requirements.txt           # Python dependencies
-├── input.pdf                  # PDF file for processing
-├── chunks.json                # Preprocessed text chunks
-├── embeddings.npy             # Precomputed embeddings
-├── .env                       # Environment variables (e.g., API key)
-├── README.md                  # Documentation
-
-
 
 ### How It Works
 
@@ -94,28 +102,7 @@ streamlit run app.py
 	•	GEMINI_API_KEY: The API key for accessing Google Generative Language API.
 
 
-Containerization
-
-For production, use Docker:
-
-FROM python:3.9-slim
-WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.enableCORS=false"]
-
-Limitations
-
-	•	Requires an active internet connection to use the Google API.
-	•	Responses depend on the accuracy and completeness of the PDF content.
-
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
 
 Author
 
-Developed by [Your Name]. Contributions and feedback are welcome!
-
-Replace placeholders (e.g., <repository-url> and your_google_api_key) with actual values for your project. Let me know if you need further assistance!
+Developed by Sanskar Khandlelwal. Contributions and feedback are welcome!
